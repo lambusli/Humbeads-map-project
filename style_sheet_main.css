@@ -1,5 +1,5 @@
 .hidden {
-	display: none; 
+	display: none;
 }
 
 #map_tooltip {
@@ -11,4 +11,9 @@
     border-radius:10px;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
     pointer-events: none;
+}
+
+#feature_name {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-weight: 700; 
 }

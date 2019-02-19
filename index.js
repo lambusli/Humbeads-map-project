@@ -31,13 +31,12 @@ Promise.all([
 	d3.json("data/geojson/Lines_no_Mexican.geojson"),
 	d3.json("data/geojson/Points.geojson")
 ]).then(function(data) {
-	console.log(data);
 
 	const polygons = data[0].features;
 	const lines = data[1].features;
 	const points = data[2].features;
 
-	// ========================= Draw Features =============================
+	// ========================= Part 1: Draw Features =============================
 
 	// draw all the polygon cities
 	map_layer.selectAll(".polygon_fea")
@@ -76,56 +75,130 @@ Promise.all([
 
 
 
-	// =================== Event listeners for highlighting features ==========================
-	
-	// mouse on polygon
-	d3.selectAll(".polygon_fea").on("mouseover", function(d, i){
-		d3.select(this)
+	// =================== Part 2: Event listeners for highlighting features ==========================
+
+	// function for showing tooltip
+	function showTooltip(d, i, dom) {
+		coord = [+d3.event.pageX, +d3.event.pageY];
+
+		d3.select("#map_tooltip")
+			.classed("hidden", false)
+			.style("left", coord[0] + 25 + "px")
+			.style("top", coord[1] + 25 + "px")
+			.style("opacity", 0)
+			.transition()
+			.style("opacity", 1)
+			.duration(200).delay(0)
+
+		d3.select("#feature_name").text(d.properties.Name);
+	}
+
+	// function for hiding tooltip
+	function hideTooltip(d, i, dom) {
+		d3.select("#map_tooltip")
+			//.classed("hidden", false)
+			.transition()
+			.style("opacity", 0)
+			.duration(200).delay(0)
+
+	}
+
+	// function for mouse on polygon feature
+	function onPolygon(d, i, dom) {
+		d3.select(dom)
+			.transition()
 			.attr("fill", "#6BAA75")
 			.attr("opacity", 1)
-	});
+			.duration(300).delay(0);
+		showTooltip(d, i, dom);
+	}
 
-	// mouse off polygon
-	d3.selectAll(".polygon_fea").on("mouseleave", function(d, i){
-		d3.select(this)
+	// function for mouse off polygon feature
+	function offPolygon(d, i, dom) {
+		d3.select(dom)
+			.transition()
 			.attr("fill", "lightgray")
 			.attr("opacity", defOpa)
-	});
+			.duration(300).delay(0);
+		hideTooltip(d, i, dom);
+	}
 
-	// mouse on line
-	d3.selectAll(".line_fea").on("mouseover", function(d, i){
-		d3.select(this)
+	// function for mouse on line feature
+	function onLine(d, i, dom) {
+		d3.select(dom)
+			.transition()
 			.attr("stroke", "#372554")
 			.attr("opacity", 1)
-			.attr("stroke-width", 6);
-	});
+			.attr("stroke-width", 6)
+			.duration(300).delay(0);
+		showTooltip(d, i, dom);
+	}
 
-	// mouse off line
-	d3.selectAll(".line_fea").on("mouseleave", function(d, i){
-		d3.select(this)
+	// function for mouse off line feature
+	function offLine(d, i, dom) {
+		d3.select(dom)
+			.transition()
 			.attr("stroke", "#8A668E")
 			.attr("opacity", defOpa)
-			.attr("stroke-width", 3);
-	});
+			.attr("stroke-width", 3)
+			.duration(300).delay(0);
+		hideTooltip(d, i, dom);
+	}
 
-	// mouse on point
-	d3.selectAll(".point_fea").on("mouseover", function(d, i){
-		d3.select(this)
+	// function for mouse on point feature
+	function onPoint(d, i, dom) {
+		d3.select(dom)
+			.transition()
 			.attr("fill", "red")
 			.attr("stroke", "#083D77")
 			.attr("opacity", 1)
 			.attr("stroke-width", 3)
-			.attr("r", 10);
-	});
+			.attr("r", 10)
+			.duration(300).delay(0);
+		showTooltip(d, i, dom);
+	}
 
-	// mouse off point
-	d3.selectAll(".point_fea").on("mouseleave", function(d, i){
-		d3.select(this)
+	// function for mouse off point feature
+	function offPoint(d, i, dom) {
+		d3.select(dom)
+			.transition()
 			.attr("fill", "#e65f5c")
 			.attr("stroke", "")
 			.attr("opacity", defOpa)
 			.attr("stroke-width", 0)
-			.attr("r", 5);
+			.attr("r", 5)
+			.duration(300).delay(0);
+		hideTooltip(d, i, dom);
+	}
+
+	// mouse on polygon
+	d3.selectAll(".polygon_fea").on("mouseover", function(d, i){
+		onPolygon(d, i, this);
+	});
+
+	// mouse off polygon
+	d3.selectAll(".polygon_fea").on("mouseleave", function(d, i){
+		offPolygon(d, i, this);
+	});
+
+	// mouse on line
+	d3.selectAll(".line_fea").on("mouseover", function(d, i){
+		onLine(d, i, this);
+	});
+
+	// mouse off line
+	d3.selectAll(".line_fea").on("mouseleave", function(d, i){
+		offLine(d, i, this);
+	});
+
+	// mouse on point
+	d3.selectAll(".point_fea").on("mouseover", function(d, i){
+		onPoint(d, i, this);
+	});
+
+	// mouse off point
+	d3.selectAll(".point_fea").on("mouseleave", function(d, i){
+		offPoint(d, i, this);
 	});
 
 });
