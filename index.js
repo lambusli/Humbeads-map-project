@@ -176,6 +176,11 @@ Promise.all([
 		onPolygon(d, i, this);
 	});
 
+	// mouse move on polygon
+	d3.selectAll(".polygon_fea").on("mousemove", function(d, i){
+		onPolygon(d, i, this);
+	});
+
 	// mouse off polygon
 	d3.selectAll(".polygon_fea").on("mouseleave", function(d, i){
 		offPolygon(d, i, this);
@@ -183,6 +188,11 @@ Promise.all([
 
 	// mouse on line
 	d3.selectAll(".line_fea").on("mouseover", function(d, i){
+		onLine(d, i, this);
+	});
+
+	// mouse move on line
+	d3.selectAll(".line_fea").on("mousemove", function(d, i){
 		onLine(d, i, this);
 	});
 
