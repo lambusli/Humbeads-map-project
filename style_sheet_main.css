@@ -1,6 +1,10 @@
+/* ===================== Universal =======================*/
+
 .hidden {
 	display: none;
 }
+
+/* ===================== Map ============================*/
 
 #map_tooltip {
     position:absolute;
@@ -15,5 +19,11 @@
 
 #feature_name {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-	font-weight: 700; 
+	font-weight: 700;
+}
+
+/* ==================== Names ===========================*/
+.label {
+	font-size: 12px;
+	font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; 
 }

@@ -1,0 +1,5 @@
+Force layout may work
+Try p5.js matter.js for more physical motion if needed
+(But they don't have data binding)
+
+Check documentation on force layout and look for advice on adding new nodes
