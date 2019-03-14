@@ -6,7 +6,8 @@ module.exports = {
 		bundle: [
 			"./_src/main.js",
 			"./_src/configure.js",
-			"./_src/cartemap.js"
+			"./_src/cartemap.js",
+			"./_src/name_graph.js"
 		]
 	},
 	output: {

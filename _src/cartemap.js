@@ -3,6 +3,9 @@ export function insertMap(svgDOM){
 	const width = svgDOM.attr("width");
 	const height = svgDOM.attr("height");
 
+	// the g container for this visualization
+	const this_g = svgDOM.append("g");
+
 	const defOpa = 0.7 // default opacity
 
 	// create a projection that provides our mapping from lat,lon data to x,y, coordinates
@@ -17,7 +20,7 @@ export function insertMap(svgDOM){
 		.projection(projection_func);
 
 	// draw map
-	const map_layer = svgDOM.append("g")
+	const map_layer = this_g.append("g")
 		.attr("id", "map_layer");
 
 
