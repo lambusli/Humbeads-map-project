@@ -1,0 +1,30 @@
+{
+  "name": "humbeads-map-project",
+  "version": "1.0.0",
+  "description": "A web-interface of Humbeads' historical music map",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/submal/Humbeads-map-project.git"
+  },
+  "keywords": [
+    "Humbeads",
+    "map",
+    "1960s",
+    "music"
+  ],
+  "author": "Lambus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/submal/Humbeads-map-project/issues"
+  },
+  "homepage": "https://github.com/submal/Humbeads-map-project#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
