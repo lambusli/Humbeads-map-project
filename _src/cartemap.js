@@ -1,10 +1,22 @@
+/* ===============================================================
+* Contain all the functions that are related to the display of the map
+
+* List of functions:
+** 1. insertMap(svgDOM)
+** 2.
+==================================================================*/
+
 export function insertMap(svgDOM){
 	// ============================ Set up ==============================
 	const width = svgDOM.attr("width");
 	const height = svgDOM.attr("height");
 
+	// Delete all the other g containers that are used for other maps
+	d3.selectAll(".map").remove(); 
+
 	// the g container for this visualization
-	const this_g = svgDOM.append("g");
+	const this_g = svgDOM.append("g")
+		.classed("map", true);
 
 	const defOpa = 0.7 // default opacity
 
