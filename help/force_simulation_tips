@@ -1,0 +1,3 @@
+Technical tips that I found out:
+d3.force(keyword, function...). The name of keyword does not matter at all. You can say d3.force(“Lambus”, d3.forceManyBody()). However, when you configure the charge in the future, you can directly refer to “Lambus.” For example, you can say later d3.force(“Lambus”).strength(-20). This is equivalent to d3.force(“Lambus”, d3.forceManyBody().strength(-20)).
+Important!! For tick event, be careful with the appropriate time to merge enter set and update set.

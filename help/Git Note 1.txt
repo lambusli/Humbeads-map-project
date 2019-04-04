@@ -1,0 +1,110 @@
+/***********
+* set up
+************/ 
+
+// for system
+git config --system
+
+// for user
+git config --global
+
+// for project
+git config
+
+git config --list (problem)
+
+// show all file
+ls -la
+
+cat .gitconfig
+
+// default text editor
+git config --global core.editor "notepad.exe -wl1"
+
+git config --global color.ui true
+
+$ curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
+
+// Rename file
+$ mv ~/git-completion.bash ~/.git-completion.bash
+
+(failed autocompletion install)
+
+//help
+git help
+
+
+/*****************
+* Everyday git operations
+*****************/ 
+
+git init
+
+// add to git all changes that have been made in this directory
+// . stands for all
+git add .
+
+git commit -m "message"
+
+/* Make the changes, add the changes, commit the changes */
+
+git log
+git log -n 1 // Only see the most recent commit
+git log --since=2018-10-30
+git log --until=2018-10-30
+git log --author=""
+git log --grip="key word you want to see in the message"
+
+// See modification of files in working directory
+git status
+
+// compare two files
+git diff ["filename"
+git diff --color-words
+git diff --staged
+git diff
+
+// delete file 1
+// do this after dragging a file into trash bin
+git add/rm <file>...  , and then commit
+
+// delete file 2
+// This is dangerous
+git rm <file>..., then commit
+
+// rename file 1
+// rename in file explorer
+git add <newName>
+git rm <oldName>
+git commit
+
+// rename file 2
+git mv <oldName> <newName>
+git commit
+
+// move file
+git mv ex.txt newFolder/ex.txt
+
+//** Note: moving file is essentially the same thing as renaming file
+
+// add and commit
+// be very careful! 
+// does not work for deleted file
+git commit -a
+
+
+/************
+* Relate to undoing changes
+************/
+
+// checkout a file, not a branch
+git checkout -- <filename>
+
+// checkout a previous version
+git checkout <SHA> -- <filename>
+
+// unstage a file
+git reset HEAD <filename>
+
+// amend the last (only) commit with a new one
+git commit --amend 

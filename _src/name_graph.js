@@ -2,10 +2,11 @@
 * Contain all the functions that are related to the display of the names
 
 * List of functions:
-** 1. insertNames(svgDOM)
-** 2.
+** 1. insertNamesDefault(svgDOM)
+** 2. insertNamesQuadrants(svgDOM)
 ==================================================================*/
 
+// create a 2D array filled with empty objects
 function make2D(x, y) {
 	let res = [];
 	for (let i = 0; i < x; i++) {
@@ -18,7 +19,7 @@ function make2D(x, y) {
 	return res;
 }
 
-// Insert names defallt circular display
+// Insert names defalt circular display
 export function insertNamesDefault(svgDOM) {
 	const width = svgDOM.attr("width");
 	const height = svgDOM.attr("height");
@@ -95,7 +96,7 @@ export function insertNamesDefault(svgDOM) {
 
 }
 
-
+// Insert names by their specified quadrants on the original Humbeads map 
 export function insertNamesQuadrants(svgDOM) {
 	const width = svgDOM.attr("width");
 	const height = svgDOM.attr("height");
@@ -137,15 +138,6 @@ export function insertNamesQuadrants(svgDOM) {
 		return centers[numeric][letter];
 	}
 
-	console.log(centerOf('4E')); 
-	console.log(centerOf('2B'));
-
-	/*
-	const simulation = d3.forceSimulation()
-		.force("center", d3.forceCenter(width / 2, height / 2))
-		.force("charge", d3.forceManyBody().strength(1))
-		.force("collide", d3.forceCollide())
-
 	d3.csv("../data/name_sheet_1.csv").then(function(nameList){
 		let data = nameList;
 
@@ -156,15 +148,22 @@ export function insertNamesQuadrants(svgDOM) {
 
 		let size = data.length;
 
-		// Add a big dummy node in the middle
-		data = [{radius: 250, dummy: true}].concat(data);
+		// force simulation
+		let simulation = d3.forceSimulation()
+			.force("charge", d3.forceManyBody().strength(1))
+			.force("collision", d3.forceCollide())
+			.force("x", d3.forceX())
+			.force("y", d3.forceY())
 
 		// update the display of nodes
 		updateNodes();
 
 		// further configure forceSimulation
-		simulation.force("collide")
+		simulation.force("collision")
 			.radius((d) => d.radius);
+
+		simulation.force("x").x((d) => centerOf(d["Quadrant_location"]).letter);
+		simulation.force("y").y((d) => centerOf(d["Quadrant_location"]).numeric)
 
 		simulation.nodes(data)
 			.on("tick", ticked);
@@ -203,5 +202,4 @@ export function insertNamesQuadrants(svgDOM) {
 		}
 
 	});
-	*/
 }

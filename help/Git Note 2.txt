@@ -1,0 +1,30 @@
+https://github.com/erwhite1
+
+/* Review */ 
+Some basic file manipulations using Linux command
+git add "filename" // . stands for all the files
+git commit -m "message"
+git status
+git log -n "number"
+git checkout "SHA" -- // Check out specific version
+
+// Link online repo to local repo
+git remote add orgin "url"
+
+// ???
+git remote -v
+
+// Push local repo to online. Need to commit first
+git push origin master
+
+// Pull online repo to local 
+git pull origin master
+
+// Clone
+git clone "url" "folder name"
+
+// Merge conflict is caused by two people tries to push at the same time. The failed person has to pull the repo from online, fix the conflict, add & commit, and then pull. 
+// Fix conflict when pulling
+nano "filename"
+// And then use the editor to flix the conflict
+// And then perform add & recommit (message: merge conflict fixed)
