@@ -11,7 +11,7 @@ conf.setSize(svg, 1000, 1000);
 N.insertNamesDefault(svg);
 
 // insert map
-M.insertMap(svg);
+M.insertHumbeadsMap(svg);
 
 // Event listener: what to do when display option changes
 d3.select("#disp_options").on("change", function(){
@@ -20,11 +20,16 @@ d3.select("#disp_options").on("change", function(){
 	// Default display
 	if (selOp == 'D') {
 		N.insertNamesDefault(svg);
-		M.insertMap(svg);
+		M.insertHumbeadsMap(svg);
 	}
 	// Quadrant display
 	else if (selOp == 'Q') {
 		N.insertNamesQuadrants(svg);
-		M.insertMap(svg); 
+		M.insertHumbeadsMap(svg);
+	}
+	// Location display
+	else if (selOp == 'L') {
+		d3.selectAll(".names").remove();
+		M.insertUSMap(svg);
 	}
 });

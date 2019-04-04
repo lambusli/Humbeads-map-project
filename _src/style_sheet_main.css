@@ -4,7 +4,7 @@
 	display: none;
 }
 
-/* ===================== Map ============================*/
+/* ===================== Humbeads Map ============================*/
 
 #map_tooltip {
     position:absolute;
@@ -22,8 +22,22 @@
 	font-weight: 700;
 }
 
+/* ==================== US Map =============================*/
+.states :hover {
+ 	fill: #d2cca1;
+}
+
+.state-borders {
+	fill: none;
+	stroke: #fff;
+	stroke-width: 0.5px;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	pointer-events: none;
+}
+
 /* ==================== Names ===========================*/
 .label {
 	font-size: 12px;
-	font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; 
+	font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 }

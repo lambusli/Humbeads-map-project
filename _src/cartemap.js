@@ -6,13 +6,13 @@
 ** 2.
 ==================================================================*/
 
-export function insertMap(svgDOM){
+export function insertHumbeadsMap(svgDOM){
 	// ============================ Set up ==============================
 	const width = svgDOM.attr("width");
 	const height = svgDOM.attr("height");
 
 	// Delete all the other g containers that are used for other maps
-	d3.selectAll(".map").remove(); 
+	d3.selectAll(".map").remove();
 
 	// the g container for this visualization
 	const this_g = svgDOM.append("g")
@@ -221,6 +221,34 @@ export function insertMap(svgDOM){
 			offPoint(d, i, this);
 		});
 
+	});
+
+}
+
+export function insertUSMap(svgDOM) {
+	const width = svgDOM.attr("width");
+	const height = svgDOM.attr("height");
+
+	// Delete all the other g containers that are used for other maps
+	d3.selectAll(".map").remove();
+
+	// the g container for this visualization
+	const this_g = svgDOM.append("g")
+		.classed("map", true);
+
+	const path = d3.geoPath();
+
+	d3.json("../data/geojson/us-10m.v1.json").then(function(us){
+		this_g.append("g")
+			.attr("class", "states")
+			.selectAll("path")
+			.data(topojson.feature(us, us.objects.states).features)
+			.enter().append("path")
+			.attr("d", path);
+
+		this_g.append("path")
+			.attr("class", "state-borders")
+			.attr("d", path(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; })));
 	});
 
 }

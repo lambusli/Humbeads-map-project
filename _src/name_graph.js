@@ -33,7 +33,7 @@ export function insertNamesDefault(svgDOM) {
 
 	const simulation = d3.forceSimulation()
 		.force("center", d3.forceCenter(width / 2, height / 2))
-		.force("charge", d3.forceManyBody().strength(1))
+		.force("charge", d3.forceManyBody().strength(0.5))
 		.force("collide", d3.forceCollide())
 
 	d3.csv("../data/name_sheet_1.csv").then(function(nameList){
@@ -96,7 +96,7 @@ export function insertNamesDefault(svgDOM) {
 
 }
 
-// Insert names by their specified quadrants on the original Humbeads map 
+// Insert names by their specified quadrants on the original Humbeads map
 export function insertNamesQuadrants(svgDOM) {
 	const width = svgDOM.attr("width");
 	const height = svgDOM.attr("height");
@@ -150,7 +150,7 @@ export function insertNamesQuadrants(svgDOM) {
 
 		// force simulation
 		let simulation = d3.forceSimulation()
-			.force("charge", d3.forceManyBody().strength(1))
+			.force("charge", d3.forceManyBody().strength(0.5))
 			.force("collision", d3.forceCollide())
 			.force("x", d3.forceX())
 			.force("y", d3.forceY())
