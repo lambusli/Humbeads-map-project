@@ -14,4 +14,6 @@ python -m http.server 8000
 
 And navigate to http://localhost:8000 for the user interface. 
 
-![Screenshot](demo.png)
+<p align="center">
+  <img src="demo.png" title="Demo">
+</p>
