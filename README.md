@@ -8,7 +8,7 @@ Download the repo and run the visualization
 
 ```
 git clone https://github.com/submal/Humbeads-map-project.git
-cd Humbeads_map_project
+cd Humbeads-map-project
 python -m http.server 8000
 ```
 
